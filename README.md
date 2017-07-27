@@ -1,5 +1,6 @@
 ## vue启不来
     npm rebuild node-sass
+    npm install babili-webpack-plugin --save-dev
 ## 想念vue无数坑洞总结
     @function pxToRem($px) {
         @return $px/11/2+rem;
