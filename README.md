@@ -53,3 +53,7 @@
     this.$router.push({
         path: '/index'
     });
+    
+## 跳转带参数，以及取参数
+    this.$router.push({ path:"/index/forget",query:{"fromCenter":true}});
+    this.$route.query.fromCenter
