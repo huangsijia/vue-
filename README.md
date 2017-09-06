@@ -57,3 +57,10 @@
 ## 跳转带参数，以及取参数
     this.$router.push({ path:"/index/forget",query:{"fromCenter":true}});
     this.$route.query.fromCenter
+    
+## 上传到github
+    git clone https://github.com/CKTim/BlueTooth.git（https://github.com/CKTim/BlueTooth.git替换成你之前复制的地址）
+    这个步骤以后你的本地项目文件夹下面就会多出个文件夹，该文件夹名即为你github上面的项目名，如图我多出了个Test文件夹，我们把本地项目文件夹下的所有文件（除了新多出的那个文件夹不用），其余都复制到那个新多出的文件夹下，接着继续输入命令 cd Test，进入Test文件夹
+    git add .        （注：别忘记后面的.，此操作是把Test文件夹下面的文件都添加进来）
+    git commit  -m  "提交信息"  （注：“提交信息”里面换成你需要，如“first commit”）
+    git push -u origin master   （注：此操作目的是把本地仓库push到github上面，此步骤需要你输入帐号和密码）
