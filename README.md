@@ -64,3 +64,28 @@
     git add .        （注：别忘记后面的.，此操作是把Test文件夹下面的文件都添加进来）
     git commit  -m  "提交信息"  （注：“提交信息”里面换成你需要，如“first commit”）
     git push -u origin master   （注：此操作目的是把本地仓库push到github上面，此步骤需要你输入帐号和密码）
+    
+## a页面input输入结束，点击链接跳转到b页面，返回a页面值没有保留,a页面链接加上save方法，页面加载处，添加获取
+    save(){
+        try {
+            localStorage.setItem('amount',this.amount)
+        } catch (error) {
+            sessionStorage.setItem('amount',this.amount)
+        }
+    }
+    mounted:function(){
+        var last = null;
+        try {
+            last = localStorage.getItem('amount')
+        } catch (error) {
+            last = sessionStorage.getItem('amount')
+        }
+        if(last){
+            this.amount = last;
+            try {
+                localStorage.removeItem('amount')
+            } catch (error) {
+                sessionStorage.removeItem('amount')
+            }
+        }
+    }
