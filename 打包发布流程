@@ -1,0 +1,21 @@
+
+1、Node6.0+ 解压node_modules.zip文件
+2、检查配置文件
+①　Index.html切至生产配置
+//是否app已经调用过setToken方法
+// window.setTokenFlag=false;//生产
+window.setTokenFlag=true;
+②　Src/js/public.js 切至生产配置
+var options = {
+      // debug:false//生产
+      debug: true
+  }
+③　Src/js/interface.js 切至生产配置
+var host=""
+3、检查完毕打包项目
+运行npm run build
+如遇到node-sass报错 可运行npm rebuild node-sass升级包
+4、打包完成项目存放位置
+5、发布生产
+将打包完成的全部内容全部更新至目录下
+6、回归生产环境是否发布成功
