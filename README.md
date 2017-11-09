@@ -53,6 +53,8 @@
     this.$router.push({
         path: '/index'
     });
+    this.$router.push({ path: '/home/bank/rechargeResult',query: {"success":true,"amount":this.$parent.sendData.amount} });
+    this.$route.query.tradeNo
     
 ## 跳转带参数，以及取参数
     this.$router.push({ path:"/index/forget",query:{"fromCenter":true}});
