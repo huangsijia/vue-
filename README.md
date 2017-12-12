@@ -58,6 +58,10 @@
     
     this.$route.query.tradeNo
     
+    
+    path: '/invest/fina/:id',
+    console.log(this.$route.params.id)
+    
 ## 跳转带参数，以及取参数
     this.$router.push({ path:"/index/forget",query:{"fromCenter":true}});
     this.$route.query.fromCenter
