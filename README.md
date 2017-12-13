@@ -102,3 +102,5 @@
 ## 反编译带html的
     v1方法{{{rh}}}
     v2方法v-html
+## css只在当前页面使用scoped=""
+<style lang="scss" scoped="" type="text/css">
