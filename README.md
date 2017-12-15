@@ -179,3 +179,30 @@ dev: {
                         }
                     });
                 }
+## 离开此页面之前的方法
+    beforeRouteLeave: function(to, from, next) {
+			$(document.body).removeClass("htmlBg");
+			next();
+		}
+## body下加入div
+    addFooter(id, schedule) {
+      var packet = Vue.extend({
+        data: function() {
+          return {
+            text: "立即加入"
+          };
+        },
+        methods: {
+          joinBtnFun() {
+            location.hash = "/invest/pay/" + id;
+          }
+        },
+        template: `<div class="joinBtn" @click="joinBtnFun"><div class="btn btnBottom">{{this.text}}</div></div>`
+      });
+      var packetIntance = new packet({
+        el: document.createElement("div")
+      });
+
+      document.body.appendChild(packetIntance.$el);
+    }
+  }
