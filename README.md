@@ -125,4 +125,57 @@ dev: {
     // just be aware of this issue when enabling this option.
     cssSourceMap: false
   }
-
+## 下拉加载数据
+    <ul class="person leftRight" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10">
+    loadMore() {
+                    if (this.initLock) {
+                        return
+                    }
+                    if (!this.hasNext) {
+                        return
+                    }
+                    this.loading = true;
+                    this.$public.API_GET({
+                        url: 'getInviteDetail',
+                        data: {
+                            offset: this.offset,
+                            max: this.max
+                        },
+                        success: (result) => {
+                            for (var item in result.data) {
+                                this.list.push(result.data[item])
+                            }
+                            this.offset += this.max;
+                            this.loading = false;
+                            if (result.data.length < this.max) {
+                                this.hasNext = false
+                            }
+                        }
+                    });
+                },
+                initData(finishFun) {
+                    this.offset = 0;
+                    this.max = 10;
+                    this.hasNext = true;
+                    this.list = [];
+                    this.loadEnd = false;
+                    this.$public.API_GET({
+                        url: 'getInviteDetail',
+                        data: {
+                            offset: this.offset,
+                            max: this.max
+                        },
+                        success: (result) => {
+                            this.loadEnd = true
+                            this.list = result.data;
+                            this.offset += this.max;
+                            if (result.data.length < this.max) {
+                                this.hasNext = false
+                            }
+                            this.initLock = false
+                            if (typeof(finishFun) == "function") {
+                                finishFun()
+                            }
+                        }
+                    });
+                }
