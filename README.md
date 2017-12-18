@@ -105,7 +105,7 @@
 ## css只在当前页面使用scoped=""
 <style lang="scss" scoped="" type="text/css">
     
-## index.js 跨域 proxyTable加内容
+## index.js 跨域 proxyTable加内容https://vuejs-templates.github.io/webpack/proxy.html
 dev: {
     env: require('./dev.env'),
     port: 4399,
@@ -114,7 +114,7 @@ dev: {
     assetsPublicPath: '/',
     proxyTable: {
       '**/wd_api/**': {
-        target: 'http://10.0.1.33:8686/',
+        target: 'http://www.a.com',
         changeOrigin: true
       }
     },
