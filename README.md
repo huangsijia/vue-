@@ -125,7 +125,7 @@ dev: {
     // just be aware of this issue when enabling this option.
     cssSourceMap: false
   }
-## 下拉加载数据
+## 下拉加载数据https://github.com/metafizzy/infinite-scroll
     <ul class="person leftRight" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10">
     loadMore() {
                     if (this.initLock) {
