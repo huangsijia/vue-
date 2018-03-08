@@ -206,3 +206,25 @@ dev: {
       document.body.appendChild(packetIntance.$el);
     }
   }
+  
+  ## 跨域
+  dev: {
+    env: require('./dev.env'),
+    port: 4398,
+    autoOpenBrowser: true,
+    assetsSubDirectory: 'static',
+    assetsPublicPath: '/',
+    proxyTable: {
+      '**/wd_api/**': {
+        // target: 'http://10.0.1.33:8686/',
+        target: 'https://www.bxjr.com/',
+        changeOrigin: true
+      }
+    },
+    // CSS Sourcemaps off by default because relative paths are "buggy"
+    // with this option, according to the CSS-Loader README
+    // (https://github.com/webpack/css-loader#sourcemaps)
+    // In our experience, they generally work as expected,
+    // just be aware of this issue when enabling this option.
+    cssSourceMap: false
+  }
