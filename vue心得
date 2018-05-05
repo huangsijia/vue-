@@ -29,4 +29,6 @@ new Vue({
 ## 修改标签用属性tag
 比如：<router-link to="/" tag="div" class="nav-link">主页</router-link>
 
-## 用户路径写错了，引导到主页面
+## 路径起对应的名字
+{path:'/',name:"homeLink",component:home},
+<router-link :to="{name:'homeLink'}" class="nav-link">主页</router-link>
