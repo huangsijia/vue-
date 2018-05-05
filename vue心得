@@ -1,0 +1,32 @@
+## 新建文件
+mkdir text
+## 简单webpack-simple
+vue init webpack-simple pizza-app
+
+## 加上mode："history"不会加上#号，用户路径写错了，引导到主页面用：path:'*',redirect:'/'
+import Vue from 'vue'
+import VueRouter from './vue-router.vue'
+import App from './App.vue'
+import home from './components/home'
+
+vue.use(VueRouter);
+
+const routes=[
+  {path:'/',component:home},
+  {path:'*',redirect:'/'},
+]
+
+const router = new VueRouter({
+  routes,
+  mode:"history"
+})
+new Vue({
+  el: '#app',
+  router,
+  render: h => h(App)
+})
+
+## 修改标签用属性tag
+比如：<router-link to="/" tag="div" class="nav-link">主页</router-link>
+
+## 用户路径写错了，引导到主页面
