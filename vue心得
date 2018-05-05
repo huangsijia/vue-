@@ -32,3 +32,14 @@ new Vue({
 ## 路径起对应的名字
 {path:'/',name:"homeLink",component:home},
 <router-link :to="{name:'homeLink'}" class="nav-link">主页</router-link>
+
+## 路由跳转
+//   跳转上一次浏览的页面
+//   this.$router.go(-1);
+//   指定跳转的地址
+//   this.$router.replace('/menu');
+//   指定跳转路由的名字下
+//   this.$router.replace({name:"homeLink"})
+//   通过push 跳转
+//   this.$router.push('/login')
+//   this.$router.push({name:"homeLink"})
