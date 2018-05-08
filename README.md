@@ -229,4 +229,5 @@ dev: {
     cssSourceMap: false
   }
 ## 同级参数不显示
-this.$router.push({ name: 'address',params: {"name":item.name,"mobile":item.mobile,"address":item.address} });
+this.$router.push({ name: 'address',params: {"name":item.name} });
+取：this.$route.params.name
