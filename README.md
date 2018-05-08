@@ -228,3 +228,5 @@ dev: {
     // just be aware of this issue when enabling this option.
     cssSourceMap: false
   }
+## 同级参数不显示
+this.$router.push({ name: 'address',params: {"name":item.name,"mobile":item.mobile,"address":item.address} });
