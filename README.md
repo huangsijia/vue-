@@ -231,3 +231,29 @@ dev: {
 ## 同级参数不显示
 this.$router.push({ name: 'address',params: {"name":item.name} });
 取：this.$route.params.name
+
+## 自定义指令
+//html 
+<div v-pin:true.bottom.right='pinned' class="card">爱
+    <button @click="pinned = !pinned">叮嘱</button>
+</div>
+// js
+Vue.directive("pin",function(el,binding){
+    var pinned = binding.value
+    var position = binding.modifiers;
+    var warnning = binding.arg;
+    console.log(warnning)
+    if(pinned){
+        el.style.position="fixed";
+        for(var key in position){
+            if(position[key]){
+                el.style[key]="10px"
+            }
+        }
+        if (warnning === 'true'){
+            el.style.background = 'yellow'
+        }        
+    }else{
+        el.style.position='static'
+    }
+})
