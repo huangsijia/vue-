@@ -103,7 +103,7 @@
     v1方法{{{rh}}}
     v2方法v-html
 ## css只在当前页面使用scoped=""
-<style lang="scss" scoped="" type="text/css">
+ //<style lang="scss" scoped="" type="text/css">
     
 ## index.js 跨域 proxyTable加内容https://vuejs-templates.github.io/webpack/proxy.html
 dev: {
