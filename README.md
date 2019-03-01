@@ -308,3 +308,26 @@ dev: {
 	    `,
 	    mixins: [mixinsFun]
 	})
+
+
+## 插槽slots 用name来指定不同插槽
+	<div id="app">
+		<panel>
+		    <div slot="title">我是标题</div>
+		    <div slot="content">我是内容我是内容我是内容我是内容我是内容</div>
+		    <div slot="footer">我是footer</div>
+		</panel>
+	</div>
+	<template id="panel-tpl">
+		<div class="panel">
+		    <div class="title">
+			<slot name="title">title</slot>
+		    </div>
+		    <div class="content">
+			<slot name="content">content</slot>
+		    </div>
+		    <div class="footer">
+			<slot name="footer">footer</slot>
+		    </div>
+		</div>
+	</template>
