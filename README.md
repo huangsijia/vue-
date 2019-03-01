@@ -208,52 +208,103 @@ dev: {
   }
   
   ## 跨域
-  dev: {
-    env: require('./dev.env'),
-    port: 4398,
-    autoOpenBrowser: true,
-    assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
-    proxyTable: {
-      '**/wd_api/**': {
-        // target: 'http://10.0.1.33:8686/',
-        target: 'https://www.bxjr.com/',
-        changeOrigin: true
-      }
-    },
-    // CSS Sourcemaps off by default because relative paths are "buggy"
-    // with this option, according to the CSS-Loader README
-    // (https://github.com/webpack/css-loader#sourcemaps)
-    // In our experience, they generally work as expected,
-    // just be aware of this issue when enabling this option.
-    cssSourceMap: false
-  }
+	  dev: {
+	    env: require('./dev.env'),
+	    port: 4398,
+	    autoOpenBrowser: true,
+	    assetsSubDirectory: 'static',
+	    assetsPublicPath: '/',
+	    proxyTable: {
+	      '**/wd_api/**': {
+		// target: 'http://10.0.1.33:8686/',
+		target: 'https://www.bxjr.com/',
+		changeOrigin: true
+	      }
+	    },
+	    // CSS Sourcemaps off by default because relative paths are "buggy"
+	    // with this option, according to the CSS-Loader README
+	    // (https://github.com/webpack/css-loader#sourcemaps)
+	    // In our experience, they generally work as expected,
+	    // just be aware of this issue when enabling this option.
+	    cssSourceMap: false
+	  }
 ## 同级参数不显示
-this.$router.push({ name: 'address',params: {"name":item.name} });
-取：this.$route.params.name
+	this.$router.push({ name: 'address',params: {"name":item.name} });
+	取：this.$route.params.name
 
 ## 自定义指令
-//html 
-<div v-pin:true.bottom.right='pinned' class="card">爱
-    <button @click="pinned = !pinned">叮嘱</button>
-</div>
-// js
-Vue.directive("pin",function(el,binding){
-    var pinned = binding.value
-    var position = binding.modifiers;
-    var warnning = binding.arg;
-    console.log(warnning)
-    if(pinned){
-        el.style.position="fixed";
-        for(var key in position){
-            if(position[key]){
-                el.style[key]="10px"
-            }
-        }
-        if (warnning === 'true'){
-            el.style.background = 'yellow'
-        }        
-    }else{
-        el.style.position='static'
-    }
-})
+	//html 
+	<div v-pin:true.bottom.right='pinned' class="card">爱
+	    <button @click="pinned = !pinned">叮嘱</button>
+	</div>
+	// js
+	Vue.directive("pin",function(el,binding){
+	    var pinned = binding.value
+	    var position = binding.modifiers;
+	    var warnning = binding.arg;
+	    console.log(warnning)
+	    if(pinned){
+		el.style.position="fixed";
+		for(var key in position){
+		    if(position[key]){
+			el.style[key]="10px"
+		    }
+		}
+		if (warnning === 'true'){
+		    el.style.background = 'yellow'
+		}        
+	    }else{
+		el.style.position='static'
+	    }
+	})
+
+## 混合 mixins
+	var mixinsFun = {
+	    methods:{
+		show() {
+		    this.visible = true;
+		},
+		hide(){
+		    this.visible = false;
+		}
+	    },
+	    data:function(){
+		return{
+		    visible: false
+		}
+	    }
+	}
+
+
+	Vue.component('popup',{
+	    template:`
+	    <div>
+		<button @mouseenter="show" @mouseleave="hide">
+		    会显示吗？
+		</button>
+		<span v-if="visible">显示了</span>
+	    </div>
+	    `,
+	    mixins:[mixinsFun],
+	    // 会直接覆盖mixins里的定义
+	    data: function () {
+		return {
+		    visible: true
+		}
+	    }
+	})
+	Vue.component('tooltip', {
+	    template: `
+	    <div>
+		<button @click="show">
+		    点击了
+		</button>
+		<div v-if="visible">
+		    <p @click="hide">关闭</p>
+		    <h1>title</h1>
+		    <span>sewghew任何事吉尔吉</span>
+		</div>
+	    </div>
+	    `,
+	    mixins: [mixinsFun]
+	})
