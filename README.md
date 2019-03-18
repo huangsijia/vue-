@@ -331,3 +331,6 @@ dev: {
 		    </div>
 		</div>
 	</template>
+	
+## 关于vue中iconfont字体图标显示乱码处理
+	字体编码后前四位是Unicode编码，想使用字符串来传递的话,只要将 “&#xe64b;” 改为 “\ue64b” 即可
