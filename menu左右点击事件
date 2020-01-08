@@ -1,0 +1,128 @@
+<template>
+  <div class="main">
+    <div class="left" @click="scrollLeft()" ref="monthPie">Left</div>
+    <div class="ul">
+      <ul ref="ul" :style="'left:' + number + 'px'">
+        <li ref="l1">11111111111111</li>
+        <li ref="l2">222222222</li>
+        <li ref="l3">33333333333</li>
+        <li ref="l4">4444</li>
+        <li ref="l5">555</li>
+        <li ref="l6">6666666666</li>
+        <li ref="l7">777777777777</li>
+        <li ref="l8">888888888888</li>
+        <li ref="l9">99999999999</li>
+        <li ref="20">aaaaaaaaaaaaaa</li>
+        <li ref="21">12serhsehsr3</li>
+        <li ref="22">12srhsrser3</li>
+        <li ref="23">12shrhersh3</li>
+        <li ref="24">123srehserh</li>
+        <li ref="25">12serh3</li>
+        <li ref="26">12srhre3</li>
+        <li ref="27">1rsres23</li>
+        <li ref="28">12rs3</li>
+        <li ref="29">12rwt3</li>
+        <li ref="30">12re3</li>
+        <li ref="3l">12e3</li>
+      </ul>
+    </div>
+    <div class="right" @click="scrollRight()">Right</div>
+  </div>
+</template>
+// 注意坑：取子组件dom 
+// 拿不到dom this.refs["#li0"] 
+// 解决办法 
+//document.querySelector("#li" + this.count).clientWidth
+<script>
+export default {
+  data() {
+    return {
+      count: 0,
+      number: 0,
+      total: 0
+    };
+  },
+  methods: {
+    scrollRight() {
+      // debugger;
+      if (this.count >= 8) {
+        return false;
+      }
+      this.count += 1;
+      if (this.count >= 8) {
+        this.rightShow = false;
+      } else {
+        this.leftShow = true;
+        this.rightShow = true;
+      }
+      this.number += -document.querySelector("#li" + this.count).clientWidth;
+    },
+    scrollLeft() {
+      // debugger;
+      if (this.count == 0) {
+        return false;
+      }
+      this.count -= 1;
+      if (this.count == 0) {
+        this.leftShow = false;
+      } else {
+        this.leftShow = true;
+        this.rightShow = true;
+      }
+      this.number += document.querySelector("#li" + this.count).clientWidth;
+    }
+  },
+  mounted() {
+    console.log(this.total);
+  }
+};
+</script>
+<style>
+.main {
+  background: red;
+  height: 50px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.menu {
+  background: green;
+  overflow: hidden;
+}
+.menu ul {
+  display: flex;
+  position: relative;
+  padding: 0;
+  transition: left 0.5s linear 0s;
+}
+.menu li {
+  float: left;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 10px;
+  list-style: none;
+  border: 1px solid #333;
+}
+.left,
+.right,
+.menu {
+  position: absolute;
+}
+.left,
+.right {
+  width: 50px;
+  cursor: pointer;
+  z-index: 999;
+}
+.left {
+  left: 0;
+}
+.right {
+  right: 0;
+}
+.menu {
+  left: 50px;
+  right: 50px;
+}
+</style>
