@@ -343,3 +343,6 @@ dev: {
 	 2、app成功后传token给h5
 	 2、或者 app给h5code,h5调用后台接口
 	 3、请求trade接口，判断支付宝支付还是微信支付，调用不同的app方法，app返回结果后，调用h5 的payValue方法，如果app返回成功调用后台的”支付状态查询“接口，显示支付成功或者支付失败）
+	 4、window['scanQRCallBack'] = (result) => {
+          this.subscanQRCallBack(result)
+        }
