@@ -337,7 +337,7 @@ dev: {
 
 ## app h5交互
 	 安卓：window.GetAppMethd.share();
-	 iOS：window.webkit.messageHandlers.share.postMessage();
+	 iOS：window.webkit.messageHandlers.share.postMessage(null);ps ios方法里必须传参，如果没有参数传null
 	 微信登录：
 	 1、点击告诉app微信登录，调用app方法 wechatLogin
 	 2、app成功后传token给h5
