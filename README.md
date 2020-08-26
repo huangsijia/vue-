@@ -347,4 +347,7 @@ dev: {
 	 4、window['app调用方法名'] = (result) => {
           this.本地方法名(result)
         }
+	5、支付：请求接口，返回的参数，支付宝时传prepayId给app,微信时partnerid，，prepayid，sign，noncester，timestamp,app放回我个状态，如果app成功，调用支付状态判断接口，3秒请求一次，共15秒
+	
+	
 	
