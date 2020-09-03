@@ -348,6 +348,26 @@ dev: {
           this.本地方法名(result)
         }
 	5、支付：请求接口，返回的参数，支付宝时传prepayId给app,微信时partnerid，，prepayid，sign，noncester，timestamp,app放回我个状态，如果app成功，调用支付状态判断接口，3秒请求一次，共15秒
-	
-	
+	6、安卓嵌套app,软键盘遮挡
+	即在安卓机中通过监听当窗口resize时，判断当前获得焦点的元素是否为输入框，再调用该元素的scrollIntoView()，即将该元素展示在当前窗口的可视区域。由于只有scrollIntoView被各浏览器均支持，所以这个方法最为常用。 使用这段代码之后，在微信或者其他浏览器测试时有效果，但因为是需要内嵌在自家APP上，使用这段代码一直没有解决输入框被挡住的问题，最后测试才发现，APP内置浏览器在聚焦输入框弹出键盘根本没有触发窗口的resize事件，瞬间心中万马奔腾(＞﹏＜)~~~，后面在借鉴了某阿里的一个网页版的聊天界面，发现它是通过获取输入框焦点将输入框定位到窗口略高于输入框的位置，在失去焦点键盘弹回时再恢复到底部，于是通过这种方式处理，暂时比较暴力的解决了在安卓上该APP上输入框被挡住的问题，这种方法显然是不完美的，比如由于无法监听resize事件，而且使用的键盘高度不固定，所以只能大概的将高度设置保持在屏幕一半偏上一点。保证绝大数情况下输入框在键盘之上显示。
+	if(/Android/.test(navigator.appVersion)) {
+	   window.addEventListener("resize", function() {
+	     if(document.activeElement.tagName=="INPUT" || document.activeElement.tagName=="TEXTAREA") {
+	       document.activeElement.scrollIntoView();
+	     }
+	  })
+	}
+	 .form1{
+	    animation:move1 0s  ease-in 0s 1 alternate forwards;
+	    -webkit-animation:move1 0s  ease-in 0s 1 alternate forwards;
+	  }
+	  @keyframes move1{
+	    from {bottom:.4rem;}
+	    to {bottom:.6rem;}
+	  }
+
+	  @-webkit-keyframes move1{
+	    from {bottom:.4rem;}
+	    to {bottom:.6rem;}
+	  }
 	
