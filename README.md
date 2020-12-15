@@ -1,3 +1,6 @@
+## 数据转换
+JSON.parse("[1,2,3]") JSON.parse("false") JSON.parse("1")
+
 ## vue启不来
     npm rebuild node-sass
     npm install babili-webpack-plugin --save-dev
