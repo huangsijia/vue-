@@ -1,3 +1,9 @@
+## 不确定传的参数
+let params = {
+	type: active == 2?'roleId':'deptId',
+	labId: active == 2?orderInfo['roleId']:orderInfo.depIds['deptId'],
+}
+
 ## 数据转换
 JSON.parse("[1,2,3]") JSON.parse("false") JSON.parse("1")
 
