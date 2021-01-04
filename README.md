@@ -1,3 +1,50 @@
+## 输入限制方法
+function numFmt(val, dn = 2) {
+  let obj = String(val);
+  // 修复第一个字符是小数点 的情况.
+  if (obj !== '' && obj.substring(0, 1) === '.') obj = '0.';
+  obj = obj.replace(/[^\d.]/g, ''); // 清除“数字”和“.”以外的字符
+  obj = obj.replace(/\.{2,}/g, '.'); // 只保留第一个. 清除多余的
+  obj = obj.replace('.', '$#$').replace(/\./g, '').replace('$#$', '.');
+  const str = new RegExp(`^(-)*(\\d+)\\.(\\d{${dn}}).*$`);
+  obj = obj.replace(str, '$1$2.$3'); // 只能输入两个小数
+  if (dn === 0) {
+    obj = parseFloat(obj);
+  } else if (obj.indexOf('.') < 0) {
+    // 以上已经过滤，此处控制的是如果没有小数点，首位不能为类似于 01、02的金额
+    obj = parseFloat(obj);
+  }
+
+  return isNaN(obj) ? 0 : obj;
+}
+
+## 移动
+
+    draggableFun(val) {
+      var div = document.getElementById("checkAudit");
+      var dragFlag = false;
+      var x, y;
+
+      div.onmousedown = function(e) {
+        e = e || window.event;
+        x = e.clientX - div.offsetLeft;
+        y = e.clientY - div.offsetTop;
+        dragFlag = true;
+      };
+
+      div.onmousemove = function(e) {
+        if (dragFlag) {
+          e = e || window.event;
+          div.style.left = e.clientX - x + "px";
+          div.style.top = e.clientY - y + "px";
+        }
+      };
+
+      div.onmouseup = function(e) {
+        dragFlag = false;
+      };
+    },
+
 ## select 限制长度
 <el-select
   v-model="searchForm.productId"
