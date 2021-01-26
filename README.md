@@ -1,3 +1,8 @@
+## 保留小数
+(Math.round(x*10)/10.0)一位
+(Math.round(x*100)/10.00)二位
+(Math.round(x*1000)/1000.0)三位
+
 ## 输入限制方法
 function numFmt(val, dn = 2) {
   let obj = String(val);
